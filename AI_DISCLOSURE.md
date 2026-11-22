@@ -12,6 +12,8 @@
 
 An AI coding assistant contributed to brainstorming, implementation drafting, and debugging. The submitted code was checked with automated tests and local Chrome browser runs; this disclosure does not claim that the entrant independently reviewed every generated line. No model training was performed.
 
+- The submitted walkthrough uses a locally synthesized Microsoft Zira text-to-speech narration voice. The narration was drafted to describe the captured prototype behavior and its limitations.
+
 ## Limits
 
 Marker integrity is a deterministic string-level guarantee for selected spans only. It is not a guarantee that the surrounding rewrite preserves the same meaning. The lexical ledger is a review aid, not a semantic verifier or safety certification.

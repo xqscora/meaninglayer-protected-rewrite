@@ -11,3 +11,8 @@ Event-period work includes:
 - A responsive browser interface, synthetic test cases, and the evaluation record in `EVALUATION_2026-11-22.md`.
 
 The app is plain HTML, CSS, and JavaScript. It does not include code from Aura, Cogram, or another core project.
+
+## Demo media
+
+The submitted walkthrough is a 2:56 screen-based video assembled from genuine browser captures of the synthetic example and a locally synthesized narration track. It is not a continuous live recording. The narration uses Microsoft Zira text-to-speech and is disclosed in `AI_DISCLOSURE.md`.
+
