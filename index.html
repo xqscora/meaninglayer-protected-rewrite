@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MeaningLayer | Protected Rewrite Review</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar"><span class="mark">ML</span><span>MEANINGLAYER</span><span class="topbar-note">LOCAL REVIEW TOOL</span></header>
+    <main>
+      <section class="intro">
+        <p class="eyebrow">A human-in-the-loop rewrite check</p>
+        <h1>Did the rewrite change what you meant?</h1>
+        <p>Compare the source and an AI draft. Inspect changes to commitments, conditions, quantities, dates, and phrases you choose to protect.</p>
+      </section>
+      <section class="workspace" aria-label="Rewrite review">
+        <div class="editors">
+          <label class="editor"><span>1 · ORIGINAL</span><textarea id="sourceText" rows="7" placeholder="Paste or write the original message"></textarea><button id="lockSelectionButton" type="button" class="secondary">Protect selected text</button><div id="lockedList" class="locked-list" aria-live="polite"></div></label>
+          <label class="editor"><span>2 · CANDIDATE REWRITE</span><textarea id="candidateText" rows="7" placeholder="Generate a draft or paste one to inspect"></textarea></label>
+        </div>
+        <section class="constraints">
+          <div class="section-heading"><div><p class="eyebrow">SENDER-DEFINED</p><h2>Meaning constraints</h2></div><button id="addConstraintButton" class="secondary">＋ Add phrase</button></div>
+          <p class="muted">These are literal review cues, not meaning judgments. Protect exact source text above to keep it out of the model input.</p>
+          <div id="constraints"></div>
+          <template id="constraintTemplate"><div class="constraint-row"><select aria-label="Constraint type"><option value="preserve">Must preserve</option><option value="avoid">Must not imply</option></select><input aria-label="Phrase"><button type="button" class="remove-button" title="Remove phrase" aria-label="Remove phrase">×</button></div></template>
+        </section>
+        <div class="actions"><button id="sampleButton" class="secondary">Load example</button><button id="localAIButton" class="primary">Draft with on-device AI</button><button id="auditButton" class="secondary">Compare changes</button><button id="copyPromptButton" class="secondary">Copy prompt for another AI</button></div>
+        <p id="promptStatus" class="muted" aria-live="polite">Chrome on-device AI · English only · selected protected text stays local · this app never starts a model download.</p>
+      </section>
+      <section id="results" class="results" hidden aria-live="polite">
+        <div class="section-heading"><div><p class="eyebrow">INSPECTION, NOT A VERDICT</p><h2>Change ledger</h2></div><span class="local-badge">LOCAL ONLY</span></div>
+        <p id="resultSummary" class="summary"></p>
+        <div id="constraintResults" class="ledger"></div>
+        <h3>Changed wording cues</h3><div id="riskResults" class="ledger"></div>
+        <p class="caveat">Lexical cues cannot resolve context, scope, or paraphrase. Review the complete original and rewrite yourself. A missing cue is not proof that meaning changed; an unchanged cue is not proof that meaning was preserved.</p>
+      </section>
+      <footer><span>On-device drafts stay in this browser tab. Nothing is auto-sent or saved.</span><span>Copying a prompt lets you choose another AI; that provider's privacy rules then apply.</span></footer>
+    </main>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
