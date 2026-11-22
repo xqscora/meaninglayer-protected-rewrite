@@ -19,6 +19,11 @@
           <label class="editor"><span>1 · ORIGINAL</span><textarea id="sourceText" rows="7" placeholder="Paste or write the original message"></textarea><button id="lockSelectionButton" type="button" class="secondary">Protect selected text</button><div id="lockedList" class="locked-list" aria-live="polite"></div></label>
           <label class="editor"><span>2 · CANDIDATE REWRITE</span><textarea id="candidateText" rows="7" placeholder="Generate a draft or paste one to inspect"></textarea></label>
         </div>
+        <section class="model-input">
+          <div class="section-heading"><div><p class="eyebrow">TRANSPARENCY</p><h2>What the model receives</h2></div><span class="local-badge">ON THIS DEVICE</span></div>
+          <p class="muted">Protected spans are replaced by markers. All other source text remains in the local model input.</p>
+          <pre id="modelInputPreview" aria-live="polite">Enter a message to preview the local model input.</pre>
+        </section>
         <section class="constraints">
           <div class="section-heading"><div><p class="eyebrow">SENDER-DEFINED</p><h2>Meaning constraints</h2></div><button id="addConstraintButton" class="secondary">＋ Add phrase</button></div>
           <p class="muted">These are literal review cues, not meaning judgments. Protect exact source text above to keep it out of the model input.</p>

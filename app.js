@@ -6,7 +6,21 @@ const constraints = document.querySelector("#constraints");
 const template = document.querySelector("#constraintTemplate");
 const results = document.querySelector("#results");
 const lockedList = document.querySelector("#lockedList");
+const modelInputPreview = document.querySelector("#modelInputPreview");
 let lockedSegments = [];
+
+function renderModelInputPreview() {
+  if (!sourceText.value.trim()) {
+    modelInputPreview.textContent = "Enter a message to preview the local model input.";
+    return;
+  }
+  try {
+    const { maskedText, segments } = maskLockedSegments(sourceText.value, lockedSegments);
+    modelInputPreview.textContent = buildPrompt({ source: maskedText, markers: segments.map((item) => item.marker) });
+  } catch (error) {
+    modelInputPreview.textContent = `Preview unavailable: ${error.message}`;
+  }
+}
 
 function renderLocks() {
   lockedList.replaceChildren();
@@ -15,6 +29,7 @@ function renderLocks() {
     hint.className = "lock-hint";
     hint.textContent = "Select a commitment, condition, date, or quantity in the original, then protect it.";
     lockedList.append(hint);
+    renderModelInputPreview();
     return;
   }
   for (const [index, segment] of lockedSegments.entries()) {
@@ -35,6 +50,7 @@ function renderLocks() {
     item.append(text, remove);
     lockedList.append(item);
   }
+  renderModelInputPreview();
 }
 
 function addConstraint(kind = "preserve", text = "") {
@@ -93,10 +109,12 @@ function render(result) {
 
 document.querySelector("#addConstraintButton").addEventListener("click", () => addConstraint());
 sourceText.addEventListener("input", () => {
-  if (!lockedSegments.length) return;
-  lockedSegments = [];
-  renderLocks();
-  document.querySelector("#promptStatus").textContent = "Original text changed. Protected selections were cleared; select them again.";
+  if (lockedSegments.length) {
+    lockedSegments = [];
+    renderLocks();
+    document.querySelector("#promptStatus").textContent = "Original text changed. Protected selections were cleared; select them again.";
+  }
+  renderModelInputPreview();
 });
 document.querySelector("#lockSelectionButton").addEventListener("click", () => {
   const start = sourceText.selectionStart;

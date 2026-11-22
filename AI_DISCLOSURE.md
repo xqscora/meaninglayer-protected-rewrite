@@ -5,6 +5,7 @@
 - The prototype optionally calls Chrome's built-in Prompt API when the browser reports that its on-device model is available.
 - The project does not download or train a model. The sample uses English. Chinese text is not sent to this API because it is outside the language set documented by Chrome for this feature.
 - The user can select exact text spans to protect. Those selected characters are replaced with markers before the model call and restored locally afterward. The app rejects outputs that alter, omit, duplicate, or reorder those markers, or that match known prompt-instruction leakage patterns.
+- The interface displays the exact assembled prompt before a model call, so users can inspect which text remains in the local model input and confirm protected spans appear only as markers.
 - No message is automatically sent, stored, or transmitted by the app. The manual copy-prompt route is optional and would be subject to the selected provider's own privacy terms.
 
 ## AI used during development

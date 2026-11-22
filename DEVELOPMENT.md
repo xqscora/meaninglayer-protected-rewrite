@@ -5,6 +5,7 @@ MeaningLayer's underlying idea predates this event. The standalone implementatio
 Event-period work includes:
 
 - A protected-span workflow that masks sender-selected source text before a model call and reconstructs it locally.
+- A live preview of the exact model prompt, making the protected-span boundary inspectable before generation.
 - Fail-closed checks for stale/overlapping selections and altered, missing, duplicated, or reordered markers.
 - A prompt-output leakage guard and a lexical change ledger for negation, quantity, date/time, and modality/condition cues.
 - A responsive browser interface, synthetic test cases, and the evaluation record in `EVALUATION_2026-11-22.md`.

@@ -17,6 +17,7 @@ Open `http://127.0.0.1:8521/` from this directory.
 
 - Uses Chrome's built-in Prompt API for English-only drafts when `LanguageModel.availability()` reports `available`; the app never starts a model download.
 - The sender selects exact spans to protect. The app replaces them with markers before the model call and restores the original spans locally. It rejects a draft if any marker is missing, duplicated, altered, reordered, or stale.
+- A live model-input preview shows the exact prompt text, including markers in place of protected spans, before the local model call.
 - Rejects known prompt-instruction leakage instead of placing that output into the candidate field.
 - Compares source and candidate for changed lexical cues in negation, quantity, date/time, and modality/condition groups.
 - Reports removed and added cues separately, independent of word order.
