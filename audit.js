@@ -2,6 +2,7 @@ const SIGNALS = [
   ["Negation", /\b(?:no|not|never|without|cannot|can't|won't|don't|doesn't|didn't|isn't|aren't|wasn't|weren't)\b|不会|不能|并非|从未|尚未|未能|禁止|不|没|未|无/giu],
   ["Quantity", /\b\d+(?:[.,]\d+)?\s*(?:%|minutes?|hours?|days?|items?|people|guests?|copies|files?|revisions?|names?|dollars?)?\b|[零〇一二两三四五六七八九十百千万亿]+(?:点[零〇一二三四五六七八九]+)?(?:份|个|天|小时|分钟|元|人|次|公里|千克|公斤|米|岁|%)/gu],
   ["Date / time", /\b(?:\d{1,2}[:/.]\d{1,2}(?:[:/.]\d{2,4})?|(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:tember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+\d{1,2}(?:,?\s+\d{4})?|monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b|(?:20\d{2}年)?\d{1,2}月\d{1,2}(?:日|号)|(?:周|星期)[一二三四五六日天]|(?:上午|下午|晚上|早上)?[零〇一二两三四五六七八九十\d]{1,3}点(?:[零〇一二两三四五六七八九十\d]{1,2}分)?/giu],
+  ["Request / recognition wording", /\b(?:please|i(?:'m| am) asking|i request|i(?:'d| would) like|i need|credit me|include my name|acknowledge my contribution|recognize my work|give me credit|i(?:'d| would) appreciate)\b|请把|请注明|请署名|认可我的贡献|给我署名|希望能注明/giu],
   ["Modality / condition", /\b(?:no more than|at least|at most|must|should|may|might|can|could|will|would|if|unless|only)\b|不超过|不少于|至少|至多|最多|不得|必须|应当|应该|可能|也许|可以|能够|不会|不能|如果|除非|只有|仅|需要|须|才|会|将/giu],
 ];
 

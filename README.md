@@ -20,6 +20,8 @@ Open `http://127.0.0.1:8521/` from this directory.
 - A live model-input preview shows the exact prompt text, including markers in place of protected spans, before the local model call.
 - Rejects known prompt-instruction leakage instead of placing that output into the candidate field.
 - Compares source and candidate for changed lexical cues in negation, quantity, date/time, and modality/condition groups.
+- Also surfaces a deliberately small set of request/recognition phrases (for example, "please", "include my name", and "credit me") so a sender can inspect whether a self-advocacy request was reworded.
+- Includes a synthetic authorship-credit example. It demonstrates a review workflow; it is not evidence of gender bias, user outcomes, or semantic loss.
 - Reports removed and added cues separately, independent of word order.
 - Optional preserve/avoid phrases are exact-string review cues only; they are not semantic judgments or enforcement rules.
 - Keeps text in the current browser tab; the app does not store or transmit messages. The built-in model runs on-device; nothing is auto-sent.
@@ -27,7 +29,7 @@ Open `http://127.0.0.1:8521/` from this directory.
 
 ## Limits
 
-This is not semantic parsing. It cannot determine negation scope, distinguish every contextual use, reliably match paraphrases, or establish equivalence. A cue can be harmless or misleading in context; a locked span can remain verbatim while surrounding text changes its implication. One observed model output moved a condition after an offer, and the ledger only showed a changed modality cue. The sender must inspect the full original and candidate; the report is a checklist, not a safety certification. The documented Chrome model languages currently do not include Chinese; Chinese input uses the manual prompt path. The local model may be unavailable on other devices, and this app will not trigger a download.
+This is not semantic parsing. It cannot determine negation scope, distinguish every contextual use, reliably match paraphrases, or establish equivalence. The request/recognition phrase list is incomplete, is not a gender detector, and cannot determine whether a request was actually preserved. A cue can be harmless or misleading in context; a locked span can remain verbatim while surrounding text changes its implication. One observed model output moved a condition after an offer, and the ledger only showed a changed modality cue. The sender must inspect the full original and candidate; the report is a checklist, not a safety certification. The documented Chrome model languages currently do not include Chinese; Chinese input uses the manual prompt path. The local model may be unavailable on other devices, and this app will not trigger a download.
 
 The project comes from a pre-event MeaningLayer/ClarityIME concept. This independent implementation, protected-span protocol, tests, interface, and evaluation are event-period work. Do not claim the seed concept itself was created during the event. The 30-case evaluation measures lexical cue detection only; it is not a user study or semantic-accuracy benchmark. An earlier prompt-only stress check retained 4 of 12 required phrases verbatim and leaked instruction text. The current app instead withholds protected spans and validates markers, but only four live local-model examples have been checked; one showed a condition-order drift. These small checks are not representative benchmarks and establish neither semantic accuracy nor product advantage.
 

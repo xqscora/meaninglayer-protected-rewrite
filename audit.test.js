@@ -55,6 +55,16 @@ test("duplicate cue counts remain visible", () => {
   assert.deepEqual(result.signals.find((item) => item.label === "Modality / condition").removed, ["may"]);
 });
 
+test("self-advocacy example exposes request-wording changes without making a semantic verdict", () => {
+  const source = "Please include my name in the acknowledgements and credit me for that contribution.";
+  const candidate = "If there is room, I would appreciate a brief mention.";
+  const result = auditRewrite({ source, candidate });
+  const requestCues = result.signals.find((item) => item.label === "Request / recognition wording");
+  assert.deepEqual(requestCues.removed, ["please", "include my name", "credit me"]);
+  assert.deepEqual(requestCues.added, ["i would appreciate"]);
+  assert.match(result.limitation, /do not determine scope/);
+});
+
 test("constraint phrases are review prompts, not semantic verdicts", () => {
   const result = auditRewrite({ source: "I cannot send it yet.", candidate: "I will send it.", constraints: [
     { id: "keep", kind: "preserve", text: "cannot send" },

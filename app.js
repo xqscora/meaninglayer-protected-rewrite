@@ -213,6 +213,20 @@ document.querySelector("#sampleButton").addEventListener("click", () => {
   addConstraint("avoid", "I will submit");
   results.hidden = true;
 });
+document.querySelector("#advocacySampleButton").addEventListener("click", () => {
+  sourceText.value = "I built the data-cleaning workflow used in the final analysis. Please include my name in the acknowledgements and credit me for that contribution. I am not asking to change the authorship decision.";
+  candidateText.value = "I helped with some data preparation. If there is room, I would appreciate a brief mention. I understand the authorship decision is unchanged.";
+  const protectedText = "Please include my name in the acknowledgements and credit me for that contribution.";
+  const start = sourceText.value.indexOf(protectedText);
+  lockedSegments = [{ start, end: start + protectedText.length, text: protectedText }];
+  renderLocks();
+  constraints.replaceChildren();
+  addConstraint("preserve", "include my name in the acknowledgements");
+  addConstraint("preserve", "credit me for that contribution");
+  addConstraint("avoid", "change the authorship decision");
+  render(auditRewrite({ source: sourceText.value, candidate: candidateText.value, constraints: readConstraints() }));
+  document.querySelector("#promptStatus").textContent = "Synthetic example loaded. The selected request is protected locally; the cue ledger flags wording changes but cannot judge fairness or meaning.";
+});
 addConstraint("preserve");
 addConstraint("avoid");
 renderLocks();
